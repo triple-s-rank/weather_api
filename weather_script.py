@@ -6,11 +6,12 @@ wttr_cherepovets = 'https://wttr.in/Череповец'
 
 params = {'lang': 'ru', 'n': '', 'T': '', 'q': ''}
 
-response_lon = requests.get(wttr_london, params=params)
-response_che = requests.get(wttr_cherepovets, params=params)
-response_svo = requests.get(wttr_sheremetyevo, params=params)
+weather_response_list = [
+	requests.get(wttr_london, params=params),
+	requests.get(wttr_cherepovets, params=params),
+	requests.get(wttr_sheremetyevo, params=params),
+]
 
-print(response_che.text)
-print(response_lon.text)
-print(response_svo.text)
+for response in weather_response_list:
+	print(response.text)
 
