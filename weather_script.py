@@ -6,7 +6,7 @@ places_list = [
 	'https://wttr.in/Череповец',
 ]
 
-params = {'lang': 'ru', 'n': '', 'T': '', 'q': ''}
+params = {'lang': 'ru', 'n': '', 'T': '', 'q': '', 'm': ''}
 
 for place in places_list:
 	print(requests.get(place, params=params).text)
