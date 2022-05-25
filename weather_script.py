@@ -8,8 +8,19 @@ places_list = [
 
 params = {'lang': 'ru', 'n': '', 'T': '', 'q': '', 'm': ''}
 
-for place in places_list:
-	print(requests.get(place, params=params).text)
+
+def request_weather(sequence):
+	for place in sequence:
+		response = requests.get(place, params=params)
+		response.raise_for_status()
+		print(response.text)
 
 
+def main():
+	try:
+		request_weather(places_list)
+	except requests.exceptions.HTTPError as error:
+		print('Http error', error)
 
+
+main()
