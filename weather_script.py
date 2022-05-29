@@ -1,27 +1,18 @@
 import requests
 
-places_list = [
-	'https://wttr.in/Шереметьево',
-	'https://wttr.in/Лондон',
-	'https://wttr.in/Череповец',
-]
-
-params = {'lang': 'ru', 'n': '', 'T': '', 'q': '', 'm': ''}
-
-
-def request_weather(sequence):
-	for place in sequence:
-		response = requests.get(place, params=params)
-		response.raise_for_status()
-		print(response.text)
-
+WTTR_URL = 'https://wttr.in/'
 
 def main():
+	params = {'lang': 'ru', 'n': '', 'T': '', 'q': '', 'm': ''}
+	places = ['Шереметьево', 'Лондон', 'Череповец']
 	try:
-		request_weather(places_list)
+		for place in places:
+			url = WTTR_URL + place
+			response = requests.get(url, params=params)
+			response.raise_for_status()
+			return (response.text)
 	except requests.exceptions.HTTPError as error:
-		print('Http error', error)
-
+		return('Http error', error)
 
 if __name__ == '__main__':
-	main()
+	print(main())
