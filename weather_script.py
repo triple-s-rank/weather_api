@@ -13,7 +13,7 @@ def main(places):
 			response.raise_for_status()
 			print(response.text)
 	except requests.exceptions.HTTPError as error:
-		return('Http error', error)
+		print('Http error', error)
 
 if __name__ == '__main__':
 	main(map_points)
