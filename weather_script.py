@@ -8,8 +8,8 @@ def get_weather_forecast(place):
 		response = requests.get(url=f"https://wttr.in/{place}", params=params)
 		response.raise_for_status()
 		return response.text
-	except requests.exceptions.HTTPError:
-		return
+	except requests.HTTPError:
+		print("Вы ввели неправильную ссылку.")
 
 if __name__ == '__main__':
 	for map_point in map_points:
